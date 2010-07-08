@@ -1,0 +1,7 @@
+bin/*
+classes/*
+lib/*
+autodoc/*
+.circumspec/*
+log
+*~
