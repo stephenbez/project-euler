@@ -1,5 +1,5 @@
-(defproject labrepl "0.0.1"
-  :description "Clojure exercises, with integrated repl and webapp"
+(defproject project-euler "0.0.1"
+  :description "Project Euler problems in Clojure."
   :dependencies [
                  [org.clojure/clojure
                   "1.2.0-master-SNAPSHOT"]
