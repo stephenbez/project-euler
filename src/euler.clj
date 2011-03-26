@@ -268,9 +268,27 @@
     (or (< amount-left 0) (empty? coins)) 0
     (= amount-left 0) 1
     :else
-    (+ (euler31a-core (- amount-left (first coins)) coins)
-      (euler31a-core amount-left (rest coins)))))
+    (+ (euler31-core (- amount-left (first coins)) coins)
+      (euler31-core amount-left (rest coins)))))
 
 (defn euler31 []
-  (println "200")
-  (euler31a-core 200 [200 100 50 20 10 5 2 1]))
+  (euler31-core 200 [200 100 50 20 10 5 2 1]))
+
+;Problem 35
+;The number, 197, is called a circular prime because all rotations of the digits: 197, 971, and 719, are themselves prime.
+;
+;There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, and 97.
+;
+;How many circular primes are there below one million?
+
+(defn rotate-one [x] (cons (last x) (butlast x)))
+
+(defn all-rotations [num]
+  (let [d (digits num)
+        sequence-rotations (take (count d) (iterate rotate-one d))]
+    (map #(Integer/parseInt (apply str %)) sequence-rotations)))
+
+(defn euler35 []
+  (let [primes-below-one-mil (take-while #(< % 1000000) primes)
+        prime-rotations (map all-rotations primes-below-one-mil)]
+      (count (filter #(every? prime? %) prime-rotations))))
